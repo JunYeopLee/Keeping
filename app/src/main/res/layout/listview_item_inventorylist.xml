@@ -22,8 +22,8 @@
         android:gravity="left|center_vertical">
         <ImageButton
             android:id="@+id/btn_selectitem"
-            android:layout_width="10dp"
-            android:layout_height="12.7dp"
+            android:layout_width="8dp"
+            android:layout_height="8dp"
             android:layout_marginLeft="10dp"
             android:scaleType="fitCenter"
             android:background="@android:color/transparent"
