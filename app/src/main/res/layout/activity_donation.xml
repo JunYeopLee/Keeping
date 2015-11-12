@@ -12,13 +12,57 @@
         android:text="기부"
         android:gravity="center"
         android:textSize="20dp"
-        android:textColor="@android:color/holo_blue_dark"/>
+        android:textColor="#386fa7"
+        android:background="@android:color/white"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#DFDFDF"></LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="9"
         android:orientation="vertical"
-        android:background="#DFDFDF">
+        android:background="@android:color/white">
+        <ImageView
+            android:layout_width="143dp"
+            android:layout_height="34.65dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/donation_donationform_text"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="20dp"
+            android:orientation="horizontal">
+            <ImageButton
+                android:layout_width="155dp"
+                android:layout_height="120.5dp"
+                android:scaleType="fitCenter"
+                android:background="@android:color/transparent"
+                android:src="@drawable/btn_donation_personal"/>
+            <ImageButton
+                android:layout_width="155dp"
+                android:layout_height="120.5dp"
+                android:layout_marginLeft="10dp"
+                android:scaleType="fitCenter"
+                android:background="@android:color/transparent"
+                android:src="@drawable/btn_donation_institution"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="20dp"
+            android:background="#DFDFDF"></LinearLayout>
+        <ImageView
+            android:layout_width="160.875dp"
+            android:layout_height="38.98dp"
+            android:layout_marginLeft="20dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/donation_donatinocampaign_text"/>
 
     </LinearLayout>
 </LinearLayout>

@@ -40,13 +40,18 @@ public class inventoryListAdapter  extends ArrayAdapter<inventoryListDAO> {
         view.setLayoutParams(lp);
 
         final inventoryListDAO inventoryListDAO = inventoryListDAOArrayList.get(position);
+        TextView cardNumberTextView = (TextView)view.findViewById(R.id.txt_card_number);
+        cardNumberTextView.setText(inventoryListDAO.getCardNumber());
+
+        TextView dateTextView = (TextView)view.findViewById(R.id.txt_date);
+        dateTextView.setText(inventoryListDAO.getDonationDate());
+
         LinearLayout layoutBackground = (LinearLayout)view.findViewById(R.id.layout_listview_inven);
         if(inventoryListDAO.getIsGiven()) {
             layoutBackground.setBackground(context.getResources().getDrawable(R.drawable.cabinet_list_certif2_head));
         } else {
             layoutBackground.setBackground(context.getResources().getDrawable(R.drawable.cabinet_list_certif_head));
         }
-
         ImageButton selectItemButton = (ImageButton)view.findViewById(R.id.btn_selectitem);
         selectItemButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,6 +86,8 @@ public class inventoryListAdapter  extends ArrayAdapter<inventoryListDAO> {
                             invenCardLayout.setVisibility(View.GONE);
                             RelativeLayout invenCardMessageLayout = (RelativeLayout)context.findViewById(R.id.layout_inven_card_message);
                             invenCardMessageLayout.setVisibility(View.VISIBLE);
+                            TextView messageTextView = (TextView)context.findViewById(R.id.txt_donation_message);
+                            messageTextView.setText(inventoryListDAO.getMessage());
                         }
                     });
                 } else {

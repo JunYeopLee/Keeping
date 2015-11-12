@@ -47,6 +47,7 @@ public class InventoryActivity extends Activity {
         sortSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                inventoryListview = (ListView)findViewById(R.id.listview_cardlist);
                 if(i==0) {
                     Collections.sort(inventoryListDAOArrayList, new Comparator<inventoryListDAO>() {
                         public int compare(inventoryListDAO s1, inventoryListDAO s2) {
@@ -54,7 +55,6 @@ public class InventoryActivity extends Activity {
                         }
                     });
                     inventoryListAdapter = new inventoryListAdapter((Activity)context,inventoryListDAOArrayList);
-                    inventoryListview = (ListView)findViewById(R.id.listview_cardlist);
                     inventoryListview.setAdapter(inventoryListAdapter);
                 } else if(i==1) {
                     Collections.sort(inventoryListDAOArrayList, new Comparator<inventoryListDAO>() {
@@ -63,19 +63,25 @@ public class InventoryActivity extends Activity {
                         }
                     });
                     inventoryListAdapter = new inventoryListAdapter((Activity)context,inventoryListDAOArrayList);
-                    inventoryListview = (ListView)findViewById(R.id.listview_cardlist);
                     inventoryListview.setAdapter(inventoryListAdapter);
                 } else if(i==2) {
-
+                    ArrayList<inventoryListDAO> newArrayList = new ArrayList<>();
+                    for( int j = 0 ; j < inventoryListDAOArrayList.size() ; j++ ) {
+                        if(inventoryListDAOArrayList.get(j).getIsGiven())
+                            newArrayList.add(inventoryListDAOArrayList.get(j));
+                    }
+                    inventoryListAdapter = new inventoryListAdapter((Activity)context,newArrayList);
+                    inventoryListview.setAdapter(inventoryListAdapter);
                 } else if(i==3) {
-
+                    ArrayList<inventoryListDAO> newArrayList = new ArrayList<>();
+                    for( int j = 0 ; j < inventoryListDAOArrayList.size() ; j++ ) {
+                        if(!inventoryListDAOArrayList.get(j).getIsGiven())
+                            newArrayList.add(inventoryListDAOArrayList.get(j));
+                    }
+                    inventoryListAdapter = new inventoryListAdapter((Activity)context,newArrayList);
+                    inventoryListview.setAdapter(inventoryListAdapter);
                 }
-                Log.d("SPINNER",adapterView.toString());
-                Log.d("SPINNER",view.toString());
-                Log.d("SPINNER",String.valueOf(i));
-                Log.d("SPINNER",String.valueOf(l));
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
                 Log.d("NOTSPINNER",adapterView.toString());
@@ -111,7 +117,7 @@ public class InventoryActivity extends Activity {
         inventoryListDAO.setDonationDate("2013.02.21");
         inventoryListDAO.setGender("남");
         inventoryListDAO.setDonationLocation("대구 혈액원");
-        inventoryListDAO.setIsGiven(true);
+        inventoryListDAO.setIsGiven(false);
         inventoryListDAO.setMessage("대구에서왔어");
         inventoryListDAOArrayList.add(inventoryListDAO);
 
@@ -137,7 +143,7 @@ public class InventoryActivity extends Activity {
         inventoryListDAO.setDonationDate("2011.02.21");
         inventoryListDAO.setGender("남");
         inventoryListDAO.setDonationLocation("서울 혈액원");
-        inventoryListDAO.setIsGiven(true);
+        inventoryListDAO.setIsGiven(false);
         inventoryListDAO.setMessage("서울에서왔어");
         inventoryListDAOArrayList.add(inventoryListDAO);
 
@@ -156,7 +162,8 @@ public class InventoryActivity extends Activity {
 
         for( int i = 0 ; i < 5 ; i++ ) {
             inventoryListDAO = new inventoryListDAO();
-            inventoryListDAO.setIsGiven(false);
+            inventoryListDAO.setIsGiven((i%2==0));
+            inventoryListDAO.setCardNumber(String.valueOf(i));
             inventoryListDAO.setDonationDate("2008.02.21");
             inventoryListDAOArrayList.add(inventoryListDAO);
         }
