@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 
@@ -66,7 +65,7 @@ public class HomeActivity extends Activity {
                             dialog.dismiss();
                         }
                     });
-                    alert.setMessage("[로그인 실패]아이디 혹은 비밀번호가 틀렸습니다").show();
+                    alert.setMessage("[연결 실패]네트워크 연결이 불안정 합니다").show();
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -74,11 +73,6 @@ public class HomeActivity extends Activity {
         }
         @Override
         public void onFailure(int statusCode, Header[] headers, Throwable throwable,JSONObject errorResponse) {
-            Intent intent = new Intent(HomeActivity.this, MainActivity.class);
-            startActivity(intent);
-            overridePendingTransition(R.anim.abc_fade_in, R.anim.abc_fade_out);
-            finish();
-
             if(dialog != null && dialog.isShowing()){
                 dialog.dismiss();
             }
@@ -89,7 +83,7 @@ public class HomeActivity extends Activity {
                     dialog.dismiss();
                 }
             });
-            alert.setMessage("[로그인 실패]네트워크 연결이 불안정 합니다").show();
+            alert.setMessage("[연결 실패]네트워크 연결이 불안정 합니다").show();
         }
     }
 }

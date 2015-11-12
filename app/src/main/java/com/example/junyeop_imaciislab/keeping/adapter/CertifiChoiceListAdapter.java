@@ -2,6 +2,7 @@ package com.example.junyeop_imaciislab.keeping.adapter;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.junyeop_imaciislab.keeping.CertifiChoiceActivity;
 import com.example.junyeop_imaciislab.keeping.CertificheckAcitivty;
 import com.example.junyeop_imaciislab.keeping.R;
 import com.example.junyeop_imaciislab.keeping.util.inventoryListDAO;
@@ -56,14 +58,26 @@ public class CertifiChoiceListAdapter  extends ArrayAdapter<inventoryListDAO> {
             layoutBackground.setBackground(context.getResources().getDrawable(R.drawable.cabinet_list_certif_head_new));
         }
 
-        view.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(context, CertificheckAcitivty.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.putExtra("bloodID",inventoryListDAO.getCardNumber());
-                context.startActivity(intent);
-            }
-        });
+        Log.d("NAME", context.getClass().getSimpleName());
+        if(((CertifiChoiceActivity)context).getActivityFrom().compareTo("BenefitDetailActivity")==0) {
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(context, CertificheckAcitivty.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.putExtra("bloodID",inventoryListDAO.getCardNumber());
+                    context.startActivity(intent);
+                }
+            });
+        } else {
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    context.setResult(1234, new Intent().putExtra("bloodID", inventoryListDAO.getCardNumber()));
+                    context.finish();
+                }
+            });
+        }
+
         return view;
     }
 }

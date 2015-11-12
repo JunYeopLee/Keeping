@@ -8,6 +8,9 @@ public class Constant {
     private static final String queryLogin = serverURL + "/user/login";
     private static final String queryUserInfo = serverURL + "/user/viewUserInfo";
     private static final String queryBloodInfo = serverURL + "/user/viewBloodInfo";
+    private static final String queryDonation = serverURL + "/user/donateBlood";
+    private static final String queryUse = serverURL + "/user/useBlood";
+
     private static String userId = "";
 
     public static String getServerURL() {
@@ -32,5 +35,13 @@ public class Constant {
 
     public static String getQueryBloodInfo() {
         return queryBloodInfo;
+    }
+
+    public static String getQueryDonation() {
+        return queryDonation;
+    }
+
+    public static String getQueryUse() {
+        return queryUse;
     }
 }

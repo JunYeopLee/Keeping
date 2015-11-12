@@ -41,7 +41,7 @@
                 android:layout_width="160dp"
                 android:layout_height="match_parent"></Spinner>
             <ImageButton
-                android:id="@+id/btn_inven_refresh"
+                android:id="@+id/btn_choice_refresh"
                 android:layout_width="26dp"
                 android:layout_height="26dp"
                 android:layout_marginLeft="120dp"

@@ -136,12 +136,12 @@
             android:orientation="vertical" >
 
             <TextView
-                android:id="@+id/TextView01"
+                android:id="@+id/txt_check_use_card"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
                 android:layout_marginTop="15dp"
-                android:text="사용전/사용후"
+                android:text="사용하기"
                 android:textColor="@android:color/white"
                 android:textSize="15dp" />
         </LinearLayout>

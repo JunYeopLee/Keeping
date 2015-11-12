@@ -55,6 +55,7 @@ public class BenefitDetailActivity extends Activity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(BenefitDetailActivity.this,CertifiChoiceActivity.class);
+                intent.putExtra("activityFrom","BenefitDetailActivity");
                 startActivity(intent);
             }
         });

@@ -45,13 +45,16 @@
                 android:layout_marginLeft="37dp"
                 android:gravity="center_vertical">
                 <EditText
+                    android:id="@+id/edit_bloodid_cam"
                     android:layout_height="match_parent"
                     android:layout_width="200dp"
                     android:textColor="@android:color/darker_gray"
+                    android:editable="false"
                     android:textSize="10dp"
                     android:gravity="bottom"
                     android:hint="10자리를 입력 해주세요" />
                 <ImageButton
+                    android:id="@+id/btn_certifi_choice_cam"
                     android:layout_width="60dp"
                     android:layout_height="40dp"
                     android:scaleType="fitCenter"
@@ -68,6 +71,7 @@
                 android:src="@drawable/donation_form_campaign_message_text" />
 
             <EditText
+                android:id="@+id/edit_message_cam"
                 android:layout_width="250dp"
                 android:layout_height="110dp"
                 android:layout_marginLeft="37dp"
@@ -82,6 +86,7 @@
         </LinearLayout>
     </LinearLayout>
     <Button
+        android:id="@+id/btn_commit_donation_cam"
         android:layout_width="match_parent"
         android:layout_height="25dp"
         android:layout_weight="1"

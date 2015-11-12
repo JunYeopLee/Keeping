@@ -5,7 +5,6 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -200,11 +199,6 @@ public class InventoryActivity extends Activity {
         }
         @Override
         public void onFailure(int statusCode, Header[] headers, Throwable throwable,JSONObject errorResponse) {
-            Intent intent = new Intent(InventoryActivity.this, MainActivity.class);
-            startActivity(intent);
-            overridePendingTransition(R.anim.abc_fade_in, R.anim.abc_fade_out);
-            finish();
-
             if(dialog != null && dialog.isShowing()){
                 dialog.dismiss();
             }

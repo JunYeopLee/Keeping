@@ -68,7 +68,7 @@
                         android:id="@+id/img_detail_click"
                         android:layout_width="match_parent"
                         android:layout_height="220dp"
-                        android:src="@drawable/benefit_content_event1_body_new" />
+                        android:src="@drawable/benefit_content_event1_body_new2" />
 
                     <ImageView
                         android:id="@+id/imageView4"
