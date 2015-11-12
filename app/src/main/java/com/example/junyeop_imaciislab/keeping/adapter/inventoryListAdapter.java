@@ -52,9 +52,9 @@ public class inventoryListAdapter  extends ArrayAdapter<inventoryListDAO> {
 
         LinearLayout layoutBackground = (LinearLayout)view.findViewById(R.id.layout_listview_inven);
         if(inventoryListDAO.getIsGiven()) {
-            layoutBackground.setBackground(context.getResources().getDrawable(R.drawable.cabinet_list_certif2_head));
+            layoutBackground.setBackground(context.getResources().getDrawable(R.drawable.cabinet_list_certif2_head_new));
         } else {
-            layoutBackground.setBackground(context.getResources().getDrawable(R.drawable.cabinet_list_certif_head));
+            layoutBackground.setBackground(context.getResources().getDrawable(R.drawable.cabinet_list_certif_head_new));
         }
 
         view.setOnClickListener(new View.OnClickListener() {

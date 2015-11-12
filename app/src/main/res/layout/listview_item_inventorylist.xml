@@ -3,21 +3,22 @@
     android:id="@+id/layout_listview_inven"
     android:orientation="horizontal" android:layout_width="320dp"
     android:layout_height="60dp"
-    android:background="@drawable/cabinet_list_certif_head"
+    android:background="@drawable/cabinet_list_certif_head_new"
     android:paddingLeft="60dp"
-    android:paddingBottom="18dp"
+    android:paddingTop="8dp"
     android:gravity="center_vertical">
     <TextView
         android:id="@+id/txt_card_number"
         android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
         android:text="05-252442"
+        android:textSize="13dp"
         android:gravity="center_vertical"
         android:textColor="@android:color/white"/>
     <LinearLayout
         android:layout_width="0dp"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_weight="1"
         android:gravity="left|center_vertical">
         <ImageButton
@@ -33,8 +34,8 @@
     <TextView
         android:id="@+id/txt_date"
         android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:layout_weight="3"
         android:text="2015-11-11"
         android:gravity="center_vertical"
         android:textColor="@android:color/white" />

@@ -44,7 +44,7 @@
         </activity>
         <activity android:name=".DonationCampaignActivity" >
         </activity>
-        <activity android:name=".CertifiChoceActivity" >
+        <activity android:name=".CertifiChoiceActivity" >
         </activity>
     </application>
 

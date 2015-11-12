@@ -1,7 +1,11 @@
 package com.example.junyeop_imaciislab.keeping;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -11,13 +15,21 @@ import android.widget.Spinner;
 
 import com.example.junyeop_imaciislab.keeping.adapter.inventoryListAdapter;
 import com.example.junyeop_imaciislab.keeping.adapter.sortSpinnerAdapter;
+import com.example.junyeop_imaciislab.keeping.util.Constant;
 import com.example.junyeop_imaciislab.keeping.util.inventoryListDAO;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.JsonHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
-import butterknife.ButterKnife;
+import cz.msebera.android.httpclient.Header;
 
 public class InventoryActivity extends Activity {
     public Spinner sortSpinner;
@@ -32,9 +44,14 @@ public class InventoryActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ButterKnife.inject(this);
         setContentView(R.layout.activity_inventory);
         context = this;
+        findViewById(R.id.btn_inven_refresh).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                resume();
+            }
+        });
         init();
     }
 
@@ -116,74 +133,89 @@ public class InventoryActivity extends Activity {
 
     private void resume() {
         inventoryListDAOArrayList = new ArrayList<>();
+        AsyncHttpClient client = new AsyncHttpClient();
+        RequestParams params = new RequestParams();
+        String u = Constant.getUserId();
+        params.add("userId", Constant.getUserId());
+        client.get(Constant.getQueryBloodInfo(), params, new InventoryListAsyncHttpResponseHandler(this));
 
-        inventoryListDAO = new inventoryListDAO();
-        inventoryListDAO.setCardNumber("11111111");
-        inventoryListDAO.setName("이준엽");
-        inventoryListDAO.setId("duql2072");
-        inventoryListDAO.setBirthDay("1991.09.03");
-        inventoryListDAO.setDonationCategory("전혈 400mL");
-        inventoryListDAO.setDonationDate("2014.02.21");
-        inventoryListDAO.setGender("남");
-        inventoryListDAO.setDonationLocation("창원 혈액원");
-        inventoryListDAO.setIsGiven(true);
-        inventoryListDAO.setMessage("창원에서왔어");
-        inventoryListDAOArrayList.add(inventoryListDAO);
+    }
 
-        inventoryListDAO = new inventoryListDAO();
-        inventoryListDAO.setCardNumber("22222222");
-        inventoryListDAO.setName("김도연");
-        inventoryListDAO.setId("duql2072");
-        inventoryListDAO.setBirthDay("1988.09.03");
-        inventoryListDAO.setDonationCategory("전혈 500mL");
-        inventoryListDAO.setDonationDate("2013.02.21");
-        inventoryListDAO.setGender("남");
-        inventoryListDAO.setDonationLocation("대구 혈액원");
-        inventoryListDAO.setIsGiven(false);
-        inventoryListDAO.setMessage("대구에서왔어");
-        inventoryListDAOArrayList.add(inventoryListDAO);
+    private class InventoryListAsyncHttpResponseHandler extends JsonHttpResponseHandler {
+        ProgressDialog dialog;
+        Context context;
+        public InventoryListAsyncHttpResponseHandler(Context context) {
+            this.context = context;
+        }
 
-        inventoryListDAO = new inventoryListDAO();
-        inventoryListDAO.setCardNumber("33333333");
-        inventoryListDAO.setName("김주희");
-        inventoryListDAO.setId("duql2072");
-        inventoryListDAO.setBirthDay("1989.09.03");
-        inventoryListDAO.setDonationCategory("전혈 600mL");
-        inventoryListDAO.setDonationDate("2012.02.21");
-        inventoryListDAO.setGender("여");
-        inventoryListDAO.setDonationLocation("서울 혈액원");
-        inventoryListDAO.setIsGiven(true);
-        inventoryListDAO.setMessage("서울에서왔어");
-        inventoryListDAOArrayList.add(inventoryListDAO);
+        @Override
+        public void onStart() {
+            dialog = new ProgressDialog(InventoryActivity.this);
+            dialog.setMessage("잠시만 기다려 주세요.");
+            dialog.setCancelable(false);
+            dialog.show();
+        }
+        @Override
+        public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+            try {
+                if(response.getBoolean("success")) {
+                    JSONObject jsonObject;
+                    JSONArray jsonArray = response.getJSONArray("data");
+                    inventoryListDAOArrayList = new ArrayList<>();
+                    for( int i = 0 ; i < jsonArray.length() ; i++ ) {
+                        jsonObject = jsonArray.getJSONObject(i);
+                        inventoryListDAO = new inventoryListDAO();
+                        inventoryListDAO.setCardNumber(jsonObject.getString("bloodID"));
+                        inventoryListDAO.setName(jsonObject.getString("human_NAME"));
+                        inventoryListDAO.setId(jsonObject.getString("sender_ID"));
+                        inventoryListDAO.setBirthDay(jsonObject.getString("birth_DATE"));
+                        inventoryListDAO.setDonationCategory(jsonObject.getString("blood_AMOUNT"));
+                        inventoryListDAO.setDonationDate(jsonObject.getString("blood_DATE"));
+                        inventoryListDAO.setGender(jsonObject.getString("blood_SEX"));
+                        inventoryListDAO.setDonationLocation(jsonObject.getString("blood_LOC"));
+                        inventoryListDAO.setIsGiven(jsonObject.getInt("is_DONATE")==1);
+                        inventoryListDAO.setMessage(jsonObject.getString("fighting_MSG"));
+                        inventoryListDAOArrayList.add(inventoryListDAO);
+                    }
+                    inventoryListAdapter = new inventoryListAdapter((Activity)this.context,inventoryListDAOArrayList);
+                    inventoryListview = (ListView)findViewById(R.id.listview_cardlist);
+                    inventoryListview.setAdapter(inventoryListAdapter);
+                    inventoryListview.invalidate();
+                    if(dialog != null && dialog.isShowing()){
+                        dialog.dismiss();
+                    }
+                } else {
+                    AlertDialog.Builder alert = new AlertDialog.Builder(InventoryActivity.this);
+                    alert.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+                    alert.setMessage("[연결 실패]네트워크 연결이 불안정 합니다").show();
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        @Override
+        public void onFailure(int statusCode, Header[] headers, Throwable throwable,JSONObject errorResponse) {
+            Intent intent = new Intent(InventoryActivity.this, MainActivity.class);
+            startActivity(intent);
+            overridePendingTransition(R.anim.abc_fade_in, R.anim.abc_fade_out);
+            finish();
 
-        inventoryListDAO = new inventoryListDAO();
-        inventoryListDAO.setCardNumber("44444444");
-        inventoryListDAO.setName("장두수");
-        inventoryListDAO.setId("duql2072");
-        inventoryListDAO.setBirthDay("1990.09.03");
-        inventoryListDAO.setDonationCategory("전혈 700mL");
-        inventoryListDAO.setDonationDate("2011.02.21");
-        inventoryListDAO.setGender("남");
-        inventoryListDAO.setDonationLocation("서울 혈액원");
-        inventoryListDAO.setIsGiven(false);
-        inventoryListDAO.setMessage("서울에서왔어");
-        inventoryListDAOArrayList.add(inventoryListDAO);
-
-        inventoryListDAO = new inventoryListDAO();
-        inventoryListDAO.setCardNumber("55555555");
-        inventoryListDAO.setName("김준혁");
-        inventoryListDAO.setId("duql2072");
-        inventoryListDAO.setBirthDay("1992.09.03");
-        inventoryListDAO.setDonationCategory("전혈 800mL");
-        inventoryListDAO.setDonationDate("2009.02.21");
-        inventoryListDAO.setGender("남");
-        inventoryListDAO.setDonationLocation("구미 혈액원");
-        inventoryListDAO.setIsGiven(true);
-        inventoryListDAO.setMessage("구에미서왔어");
-        inventoryListDAOArrayList.add(inventoryListDAO);
-
-        inventoryListAdapter = new inventoryListAdapter(this,inventoryListDAOArrayList);
-        inventoryListview = (ListView)findViewById(R.id.listview_cardlist);
-        inventoryListview.setAdapter(inventoryListAdapter);
+            if(dialog != null && dialog.isShowing()){
+                dialog.dismiss();
+            }
+            AlertDialog.Builder alert = new AlertDialog.Builder(InventoryActivity.this);
+            alert.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
+            alert.setMessage("[연결 실패]네트워크 연결이 불안정 합니다").show();
+        }
     }
 }

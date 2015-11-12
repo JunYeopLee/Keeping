@@ -14,7 +14,6 @@ import android.widget.EditText;
 import com.example.junyeop_imaciislab.keeping.util.Constant;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
-import com.loopj.android.http.PersistentCookieStore;
 import com.loopj.android.http.RequestParams;
 
 import org.json.JSONException;
@@ -23,7 +22,6 @@ import org.json.JSONObject;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cz.msebera.android.httpclient.Header;
-import cz.msebera.android.httpclient.client.CookieStore;
 
 public class LoginActivity extends Activity {
     public static final String TAG = "LoginActivity";
@@ -41,9 +39,9 @@ public class LoginActivity extends Activity {
         if (!"".equalsIgnoreCase(username) && username != null && password != null ) { // Auto login
             AsyncHttpClient client = new AsyncHttpClient();
             RequestParams params = new RequestParams();
-            params.add("username",username);
-            params.add("password",password);
-            client.post(Constant.getQueryLogin(), params, new LoginAsyncHttpResponseHandler());
+            params.add("id",username);
+            params.add("pw",password);
+            client.get(Constant.getQueryLogin(), params, new LoginAsyncHttpResponseHandler());
         }
     }
 
@@ -51,13 +49,13 @@ public class LoginActivity extends Activity {
     public void onclickLogin() {
         AsyncHttpClient client = new AsyncHttpClient();
         RequestParams params = new RequestParams();
-        CookieStore cookieStore = new PersistentCookieStore(getApplicationContext());
-        client.setCookieStore(cookieStore);
+        //CookieStore cookieStore = new PersistentCookieStore(getApplicationContext());
+        //client.setCookieStore(cookieStore);
         username = ((EditText) findViewById(R.id.edit_id)).getText().toString();
         password = ((EditText) findViewById(R.id.edit_pw)).getText().toString();
-        params.add("username", username);
-        params.add("password", password);
-        client.post(Constant.getQueryLogin(), params, new LoginAsyncHttpResponseHandler());
+        params.add("id", username);
+        params.add("pw", password);
+        client.get(Constant.getQueryLogin(), params, new LoginAsyncHttpResponseHandler());
     }
 
 
@@ -87,6 +85,10 @@ public class LoginActivity extends Activity {
             try {
                 if(response.getBoolean("success")) {
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                    JSONObject jsonObject = response.getJSONObject("data");
+                    intent.putExtra("name",jsonObject.getString("name"));
+                    intent.putExtra("bloodType",jsonObject.getString("bloodType"));
+                    intent.putExtra("userId",username);
                     startActivity(intent);
                     overridePendingTransition(R.anim.abc_fade_in, R.anim.abc_fade_out);
                     finish();

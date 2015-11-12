@@ -54,7 +54,7 @@ public class BenefitDetailActivity extends Activity {
         useCardButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(BenefitDetailActivity.this,CertificheckAcitivty.class);
+                Intent intent = new Intent(BenefitDetailActivity.this,CertifiChoiceActivity.class);
                 startActivity(intent);
             }
         });

@@ -68,15 +68,20 @@
                         android:id="@+id/img_detail_click"
                         android:layout_width="match_parent"
                         android:layout_height="220dp"
-                        android:src="@drawable/benefit_content_event1_body" />
+                        android:src="@drawable/benefit_content_event1_body_new" />
 
                     <ImageView
                         android:id="@+id/imageView4"
                         android:layout_width="match_parent"
                         android:layout_height="220dp"
                         android:layout_marginTop="5dp"
-                        android:src="@drawable/benefit_content_event4_body" />
+                        android:src="@drawable/benefit_content_event4_body_new" />
 
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="220dp"
+                        android:layout_marginTop="5dp"
+                        android:src="@drawable/benefit_content_event7_body" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -96,15 +101,21 @@
                         android:id="@+id/imageView5"
                         android:layout_width="wrap_content"
                         android:layout_height="220dp"
-                        android:layout_marginTop="2dp"
-                        android:src="@drawable/benefit_content_event3_body" />
+                        android:layout_marginTop="5dp"
+                        android:src="@drawable/benefit_content_event3_body_new" />
 
                     <ImageView
                         android:id="@+id/imageView6"
                         android:layout_width="wrap_content"
                         android:layout_height="95dp"
-                        android:layout_marginTop="2dp"
+                        android:layout_marginTop="5dp"
                         android:src="@drawable/benefit_content_event3" />
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="220dp"
+                        android:layout_marginTop="5dp"
+                        android:src="@drawable/benefit_content_event8_body" />
 
                 </LinearLayout>
 

@@ -10,20 +10,26 @@ import android.widget.ImageView;
 import android.widget.TabHost;
 import android.widget.TabWidget;
 
+import com.example.junyeop_imaciislab.keeping.util.Constant;
+
 public class MainActivity extends TabActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Constant.setUserId(getIntent().getExtras().getString("userId"));
 
         TabHost tabHost = getTabHost();
-
         ImageView imageView = new ImageView(getApplicationContext());
         imageView.setImageResource(R.drawable.btn_tab1);
+        Intent intent = new Intent(getApplicationContext(), HomeActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.putExtra("name", getIntent().getExtras().getString("name"));
+        intent.putExtra("bloodType",getIntent().getExtras().getString("bloodType"));
+        intent.putExtra("userId",getIntent().getExtras().getString("userId"));
         tabHost.addTab(tabHost.newTabSpec("Tab1")
                 .setIndicator(imageView)
-                .setContent(new Intent(getApplicationContext(), HomeActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)));
+                .setContent(intent));
 
         imageView = new ImageView(getApplicationContext());
         imageView.setImageResource(R.drawable.btn_tab2);
