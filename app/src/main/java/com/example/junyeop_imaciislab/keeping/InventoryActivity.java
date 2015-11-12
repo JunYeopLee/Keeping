@@ -35,13 +35,28 @@ public class InventoryActivity extends Activity {
         ButterKnife.inject(this);
         setContentView(R.layout.activity_inventory);
         context = this;
-        //init();
+        init();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        //resume();
+        resume();
+    }
+
+    @Override
+    protected void onPause()
+    {
+        super.onPause();
+        System.gc();
+    }
+
+
+    @Override
+    protected void onDestroy()
+    {
+        super.onDestroy();
+        System.gc();
     }
 
     private void init() {
@@ -166,15 +181,7 @@ public class InventoryActivity extends Activity {
         inventoryListDAO.setIsGiven(true);
         inventoryListDAO.setMessage("구에미서왔어");
         inventoryListDAOArrayList.add(inventoryListDAO);
-/*
-        for( int i = 0 ; i < 5 ; i++ ) {
-            inventoryListDAO = new inventoryListDAO();
-            inventoryListDAO.setIsGiven((i%2==0));
-            inventoryListDAO.setCardNumber(String.valueOf(i));
-            inventoryListDAO.setDonationDate("2008.02.21");
-            inventoryListDAOArrayList.add(inventoryListDAO);
-        }
-*/
+
         inventoryListAdapter = new inventoryListAdapter(this,inventoryListDAOArrayList);
         inventoryListview = (ListView)findViewById(R.id.listview_cardlist);
         inventoryListview.setAdapter(inventoryListAdapter);

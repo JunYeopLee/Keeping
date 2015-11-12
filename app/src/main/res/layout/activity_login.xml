@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="2"
-        android:paddingBottom="20dp"
+        android:paddingBottom="30dp"
         android:gravity="center_horizontal|bottom">
         <ImageView
             android:layout_width="122.1dp"
@@ -34,8 +34,8 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
+            android:paddingBottom="25dp"
+            android:paddingRight="10dp"
             android:orientation="horizontal">
             <LinearLayout
                 android:layout_width="0dp"
@@ -66,8 +66,8 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
+            android:paddingBottom="25dp"
+            android:paddingRight="10dp"
             android:orientation="horizontal">
             <LinearLayout
                 android:layout_width="0dp"
@@ -100,13 +100,12 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-
         android:gravity="center_horizontal">
 
         <ImageButton
             android:id="@+id/btn_signup"
-            android:layout_width="78dp"
-            android:layout_height="53dp"
+            android:layout_width="95dp"
+            android:layout_height="43dp"
             android:background="@android:color/transparent"
             android:scaleType="fitCenter"
             android:src="@drawable/btn_signup"
@@ -114,8 +113,8 @@
 
         <ImageButton
             android:id="@+id/btn_log_in"
-            android:layout_width="78dp"
-            android:layout_height="53dp"
+            android:layout_width="95dp"
+            android:layout_height="43dp"
             android:layout_marginLeft="10dp"
             android:background="@android:color/transparent"
             android:scaleType="fitCenter"

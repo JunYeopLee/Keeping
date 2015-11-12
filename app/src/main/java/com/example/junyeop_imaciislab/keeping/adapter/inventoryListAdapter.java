@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -37,8 +38,10 @@ public class inventoryListAdapter  extends ArrayAdapter<inventoryListDAO> {
         }
         scale = context.getResources().getDisplayMetrics().density;
         int dp = (int) (scale + 0.5f);
-        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(320 * dp, 60 * dp);
+
+        AbsListView.LayoutParams lp = new AbsListView.LayoutParams(320 * dp, 60 * dp);
         view.setLayoutParams(lp);
+        //((LinearLayout)view).setLayoutParams(lp);
 
         final inventoryListDAO inventoryListDAO = inventoryListDAOArrayList.get(position);
         TextView cardNumberTextView = (TextView)view.findViewById(R.id.txt_card_number);
@@ -53,8 +56,8 @@ public class inventoryListAdapter  extends ArrayAdapter<inventoryListDAO> {
         } else {
             layoutBackground.setBackground(context.getResources().getDrawable(R.drawable.cabinet_list_certif_head));
         }
-        ImageButton selectItemButton = (ImageButton)view.findViewById(R.id.btn_selectitem);
-        selectItemButton.setOnClickListener(new View.OnClickListener() {
+
+        view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 RelativeLayout donationCardLayout = (RelativeLayout)context.findViewById(R.id.layout_inven_card);
@@ -70,6 +73,7 @@ public class inventoryListAdapter  extends ArrayAdapter<inventoryListDAO> {
                 ImageButton messageOnCardButton = (ImageButton)context.findViewById(R.id.btn_message_oncard);
                 RelativeLayout invenCardLayout = (RelativeLayout)context.findViewById(R.id.layout_inven_card);
                 RelativeLayout invenCardMessageLayout = (RelativeLayout)context.findViewById(R.id.layout_inven_card_message);
+
                 if(invenCardLayout.getVisibility()==View.GONE) {
                     invenCardLayout.setVisibility(View.VISIBLE);
                     invenCardLayout.invalidate();
@@ -78,7 +82,7 @@ public class inventoryListAdapter  extends ArrayAdapter<inventoryListDAO> {
                 }
                 if(inventoryListDAO.getIsGiven()) {
                     donationCardLayout.setBackground(context.getResources().getDrawable(R.drawable.cabinet_certif2));
-                    givingDateTextview.setVisibility(View.VISIBLE);
+                    givingDateTextview.setVisibility(View.VISIBLE); givingDateTextview.invalidate();
                     messageOnCardButton.setVisibility(View.VISIBLE);
                     messageOnCardButton.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -108,6 +112,17 @@ public class inventoryListAdapter  extends ArrayAdapter<inventoryListDAO> {
                 genderTextview.setText(inventoryListDAO.getGender());
 
                 donationCardLayout.invalidate();
+            }
+        });
+
+        ImageButton backToCardButton = (ImageButton)context.findViewById(R.id.btn_back);
+        backToCardButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                RelativeLayout invenCardLayout = (RelativeLayout)context.findViewById(R.id.layout_inven_card);
+                invenCardLayout.setVisibility(View.VISIBLE);
+                RelativeLayout invenCardMessageLayout = (RelativeLayout)context.findViewById(R.id.layout_inven_card_message);
+                invenCardMessageLayout.setVisibility(View.GONE);
             }
         });
         return view;

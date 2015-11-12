@@ -61,7 +61,7 @@
                     android:id="@+id/txt_birthday"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="2.2dp"
+                    android:layout_marginTop="3dp"
                     android:layout_alignLeft="@+id/txt_name"
                     android:layout_below="@+id/txt_name"
                     android:textSize="9dp"
@@ -72,7 +72,7 @@
                     android:id="@+id/txt_donation_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="2.2dp"
+                    android:layout_marginTop="3dp"
                     android:layout_alignLeft="@+id/txt_name"
                     android:layout_below="@+id/txt_birthday"
                     android:textSize="9dp"
@@ -83,7 +83,7 @@
                     android:id="@+id/txt_donation_location"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="2.2dp"
+                    android:layout_marginTop="3dp"
                     android:layout_alignLeft="@+id/txt_name"
                     android:layout_below="@+id/txt_donation_date"
                     android:textSize="9dp"
@@ -105,7 +105,7 @@
                     android:id="@+id/txt_donation_category"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="2.2dp"
+                    android:layout_marginTop="3dp"
                     android:layout_alignLeft="@+id/txt_id"
                     android:layout_below="@+id/txt_id"
                     android:textSize="9dp"
@@ -116,7 +116,7 @@
                     android:id="@+id/txt_gender"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="2.2dp"
+                    android:layout_marginTop="3dp"
                     android:layout_alignLeft="@+id/txt_id"
                     android:layout_below="@+id/txt_donation_category"
                     android:textSize="9dp"
@@ -127,7 +127,7 @@
                     android:id="@+id/txt_giving_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
+                    android:layout_marginTop="3dp"
                     android:layout_alignLeft="@+id/txt_id"
                     android:layout_below="@+id/txt_gender"
                     android:textSize="9dp"
@@ -180,9 +180,22 @@
                     android:layout_marginLeft="6dp"
                     android:scaleType="fitCenter"
                     android:background="@android:color/transparent"
-                    android:src="@drawable/btn_download"
+                    android:src="@drawable/btn_sns"
                     android:layout_alignParentBottom="true"
                     android:layout_toRightOf="@+id/btn_download_oncard"/>
+
+                <ImageButton
+                    android:id="@+id/btn_back"
+                    android:layout_width="26dp"
+                    android:layout_height="26dp"
+                    android:layout_marginBottom="12dp"
+                    android:layout_marginRight="12dp"
+                    android:scaleType="fitCenter"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/btn_backtocard"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"/>
+
             </RelativeLayout>
         </RelativeLayout>
         <LinearLayout

@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/layout_listview_inven"
-    android:orientation="horizontal" android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:orientation="horizontal" android:layout_width="320dp"
+    android:layout_height="60dp"
     android:background="@drawable/cabinet_list_certif_head"
-    android:layout_marginTop="-20dp"
     android:paddingLeft="60dp"
     android:paddingBottom="18dp"
     android:gravity="center_vertical">
@@ -23,7 +22,7 @@
         android:gravity="left|center_vertical">
         <ImageButton
             android:id="@+id/btn_selectitem"
-            android:layout_width="18.9dp"
+            android:layout_width="10dp"
             android:layout_height="12.7dp"
             android:layout_marginLeft="10dp"
             android:scaleType="fitCenter"
