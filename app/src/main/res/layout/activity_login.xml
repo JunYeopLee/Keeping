@@ -94,6 +94,7 @@
                 android:textColorHint="#CCCCCC"
                 android:singleLine="true"/>
         </LinearLayout>
+
     </LinearLayout>
 
     <LinearLayout

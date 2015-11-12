@@ -26,18 +26,33 @@ public class CertificheckAcitivty extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_certificheck_acitivty);
         bloodId = getIntent().getExtras().getString("bloodID");
-        ((TextView)findViewById(R.id.txt_bloodid)).setText(bloodId);
+        ((TextView) findViewById(R.id.txt_bloodid)).setText(bloodId);
 
         final String finalbloodId = bloodId;
-        ((TextView)findViewById(R.id.txt_check_use_card)).setOnClickListener(new View.OnClickListener() {
+        ((TextView) findViewById(R.id.txt_check_use_card)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AsyncHttpClient client = new AsyncHttpClient();
-                RequestParams params = new RequestParams();
+                final AsyncHttpClient client = new AsyncHttpClient();
+                final RequestParams params = new RequestParams();
                 params.add("userId", Constant.getUserId());
                 params.add("bloodId", finalbloodId);
-                client.get(Constant.getQueryUse(), params, new UseCardAsyncHttpResponseHandler());
-                finish();
+                AlertDialog.Builder alert_confirm = new AlertDialog.Builder(CertificheckAcitivty.this);
+                alert_confirm.setMessage("사용 하시겠습니까?").setCancelable(false).setPositiveButton("확인",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                client.get(Constant.getQueryUse(), params, new UseCardAsyncHttpResponseHandler());
+                                finish();
+                            }
+                        }).setNegativeButton("취소",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                return;
+                            }
+                        });
+                AlertDialog alert = alert_confirm.create();
+                alert.show();
             }
         });
     }

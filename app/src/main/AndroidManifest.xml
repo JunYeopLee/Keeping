@@ -46,6 +46,8 @@
         </activity>
         <activity android:name=".CertifiChoiceActivity" >
         </activity>
+        <activity android:name=".FacebookFakeActivity" >
+        </activity>
     </application>
 
 </manifest>

@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <RelativeLayout
+        android:id="@+id/layout_campaign"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="20dp"
@@ -64,7 +65,7 @@
                 android:layout_marginLeft="-12dp"
                 android:scaleType="fitCenter"
                 android:layout_toRightOf = "@+id/img_gray_heart"
-                android:src="@drawable/donation_campaign_bar_frame" />
+                android:src="@drawable/donation_campaign_bar_frame2" />
             <ImageView
                 android:id="@+id/img_gray_heart"
                 android:layout_width="39dp"

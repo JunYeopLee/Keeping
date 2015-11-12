@@ -16,6 +16,7 @@ public class DonationCampaignActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_donation_campaign);
+        int position = getIntent().getExtras().getInt("position");
         certifiChoiceButton = (ImageButton)findViewById(R.id.btn_certifi_choice_cam);
         certifiChoiceButton.setOnClickListener(new View.OnClickListener() {
             @Override

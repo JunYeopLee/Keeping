@@ -36,6 +36,7 @@ public class LoginActivity extends Activity {
         LoginSharedPreferences = getSharedPreferences("login", MODE_PRIVATE);
         username = LoginSharedPreferences.getString("username", null);
         password = LoginSharedPreferences.getString("password", null);
+        /*
         if (!"".equalsIgnoreCase(username) && username != null && password != null ) { // Auto login
             AsyncHttpClient client = new AsyncHttpClient();
             RequestParams params = new RequestParams();
@@ -43,6 +44,7 @@ public class LoginActivity extends Activity {
             params.add("pw",password);
             client.get(Constant.getQueryLogin(), params, new LoginAsyncHttpResponseHandler());
         }
+        */
     }
 
     @OnClick(R.id.btn_log_in)
@@ -61,9 +63,9 @@ public class LoginActivity extends Activity {
 
     @OnClick(R.id.btn_signup)
     public void onClickSignup() {
-        Intent intent = new Intent(LoginActivity.this,SignupActivity.class);
-        startActivity(intent);
-        overridePendingTransition(R.anim.abc_fade_in, R.anim.abc_fade_out);
+        //Intent intent = new Intent(LoginActivity.this,SignupActivity.class);
+        //startActivity(intent);
+        //overridePendingTransition(R.anim.abc_fade_in, R.anim.abc_fade_out);
     }
 
     /**

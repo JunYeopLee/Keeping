@@ -39,9 +39,10 @@
         <ImageView
             android:id="@+id/imageView7"
             android:layout_width="10dp"
-            android:layout_height="10dp"
+            android:layout_height="3dp"
             android:layout_marginBottom="5dp"
-            android:src="@drawable/benefit_content_image_dot_touch" />
+            android:src="@drawable/benefit_content_image_dot_touch"
+            android:visibility="invisible"/>
 
         <ScrollView
             android:id="@+id/scrollView1"

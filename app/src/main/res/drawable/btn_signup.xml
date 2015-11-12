@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:state_pressed="true" android:drawable="@drawable/main_join_btn_touch" />
+    <item android:state_pressed="true" android:drawable="@drawable/main_join_btn_touch2" />
     <!--   눌린 후 버튼이미지 파일명을 써준다.-->
     <!-- pressed -->
 

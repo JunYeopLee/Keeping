@@ -3,6 +3,7 @@ package com.example.junyeop_imaciislab.keeping;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -42,12 +43,13 @@ public class DonationPersonalActivity extends Activity {
             }
         });
 
+        final Context context = this;
         commitButton = (Button)findViewById(R.id.btn_commit_donation_personal);
         commitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AsyncHttpClient client = new AsyncHttpClient();
-                RequestParams params = new RequestParams();
+                final AsyncHttpClient client = new AsyncHttpClient();
+                final RequestParams params = new RequestParams();
 
                 if(selectedBloodID == null || selectedBloodID.compareTo("")==0) return;
                 params.add("bloodId",selectedBloodID);
@@ -56,8 +58,24 @@ public class DonationPersonalActivity extends Activity {
                 String receiveUser = ((EditText)findViewById(R.id.edit_to_id)).getText().toString();
                 if(receiveUser == null || receiveUser.compareTo("")==0) return;
                 params.add("getUserId",receiveUser);
-                params.add("fightingMsg",((EditText)findViewById(R.id.edit_message)).getText().toString());
-                client.get(Constant.getQueryDonation(), params, new SendBloodCardAsyncHttpResponseHandler());
+                params.add("fightingMsg", ((EditText) findViewById(R.id.edit_message)).getText().toString());
+                AlertDialog.Builder alert_confirm = new AlertDialog.Builder(DonationPersonalActivity.this);
+                alert_confirm.setMessage("기부 하시겠습니까?").setCancelable(false).setPositiveButton("확인",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                client.get(Constant.getQueryDonation(), params, new SendBloodCardAsyncHttpResponseHandler());
+                                finish();
+                            }
+                        }).setNegativeButton("취소",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                return;
+                            }
+                        });
+                AlertDialog alert = alert_confirm.create();
+                alert.show();
             }
         });
     }

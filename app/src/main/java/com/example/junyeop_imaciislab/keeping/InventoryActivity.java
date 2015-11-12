@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -52,6 +53,14 @@ public class InventoryActivity extends Activity {
             }
         });
         init();
+
+        findViewById(R.id.btn_sns_oncard).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(InventoryActivity.this,FacebookFakeActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override

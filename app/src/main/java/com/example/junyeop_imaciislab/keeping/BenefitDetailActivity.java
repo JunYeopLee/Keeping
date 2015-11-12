@@ -59,5 +59,13 @@ public class BenefitDetailActivity extends Activity {
                 startActivity(intent);
             }
         });
+
+        ((ImageButton)findViewById(R.id.btn_sns_fb)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(BenefitDetailActivity.this,FacebookFakeActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }
