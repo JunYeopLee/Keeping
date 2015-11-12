@@ -2,64 +2,47 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#DCDCDC"
     android:orientation="vertical"
-    tools:context="com.example.junyeop_imaciislab.keeping.DonationInstitutionActivity">
+    android:padding="0dp"
+    tools:context="com.example.junyeop_imaciislab.keeping.DonationCampaignActivity">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:padding="24dp"
-        android:layout_weight="11">
+        android:layout_height="100dp"
+        android:layout_weight="5"
+        android:padding="0dp"
+        android:background="#DCDCDC">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/donation_form_campaign_image"
+            android:scaleType="fitCenter"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="119dp"
+        android:layout_weight="7.5"
+        android:padding="15dp"
+        android:background="#DCDCDC">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="3dp"
-            android:background="@drawable/donation_form_personal_body"
-            android:orientation="vertical">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginTop="20dp"
-                android:gravity="center_vertical"
-                android:background="@drawable/donation_form_institution_title_bg">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:text="기관"
-                    android:textSize="20dp"
-                    android:textStyle="bold"
-                    android:textColor="@android:color/white" />
-            </LinearLayout>
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="20dp"
-                android:layout_marginTop="30dp"
-                android:layout_marginLeft="27dp"
-                android:scaleType="fitCenter"
-                android:src="@drawable/donation_form_institution_to_text"
-                />
-            <EditText
-                android:layout_width="250dp"
-                android:layout_height="30dp"
-                android:textColor="@android:color/darker_gray"
-                android:textSize="10dp"
-                android:hint="아이디를 입력 해주세요"
-                android:layout_marginLeft="27dp" />
+            android:orientation="vertical"
+            android:background="@drawable/donation_form_campaign_body">
             <ImageView
                 android:layout_width="50dp"
                 android:layout_height="30dp"
                 android:layout_marginTop="20dp"
-                android:layout_marginLeft="27dp"
+                android:layout_marginLeft="37dp"
                 android:scaleType="fitCenter"
-                android:src="@drawable/donation_form_institution_num_text"
+                android:src="@drawable/donation_form_campaign_num_text"
                 />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:orientation="horizontal"
-                android:layout_marginLeft="27dp"
+                android:layout_marginLeft="37dp"
                 android:gravity="center_vertical">
                 <EditText
                     android:layout_height="match_parent"
@@ -73,7 +56,7 @@
                     android:layout_height="40dp"
                     android:scaleType="fitCenter"
                     android:background="@android:color/transparent"
-                    android:src="@drawable/donation_form_institution_num_btn"/>
+                    android:src="@drawable/donation_form_campaign_num_btn"/>
             </LinearLayout>
 
             <ImageView
@@ -81,13 +64,13 @@
                 android:layout_height="30dp"
                 android:scaleType="fitCenter"
                 android:layout_marginTop="30dp"
-                android:layout_marginLeft="27dp"
-                android:src="@drawable/donation_form_institution_message_text" />
+                android:layout_marginLeft="37dp"
+                android:src="@drawable/donation_form_campaign_message_text" />
 
             <EditText
                 android:layout_width="250dp"
-                android:layout_height="150dp"
-                android:layout_marginLeft="27dp"
+                android:layout_height="110dp"
+                android:layout_marginLeft="37dp"
                 android:padding="10dp"
                 android:textSize="10dp"
                 android:hint="메세지를 입력 해주세요"
@@ -96,13 +79,11 @@
                 android:lines="7"
                 android:gravity="top"
                 android:background="@drawable/background_edit_box"/>
-
         </LinearLayout>
     </LinearLayout>
-
     <Button
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="25dp"
         android:layout_weight="1"
         android:gravity="center"
         android:text="기부하기"

@@ -42,6 +42,8 @@
         </activity>
         <activity android:name=".DonationInstitutionActivity" >
         </activity>
+        <activity android:name=".DonationCampaignActivity" >
+        </activity>
     </application>
 
 </manifest>

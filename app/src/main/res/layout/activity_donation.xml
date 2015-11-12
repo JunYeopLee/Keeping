@@ -40,12 +40,14 @@
             android:layout_marginBottom="20dp"
             android:orientation="horizontal">
             <ImageButton
+                android:id="@+id/btn_donation_to_personal"
                 android:layout_width="155dp"
                 android:layout_height="120.5dp"
                 android:scaleType="fitCenter"
                 android:background="@android:color/transparent"
                 android:src="@drawable/btn_donation_personal"/>
             <ImageButton
+                android:id="@+id/btn_donation_to_institution"
                 android:layout_width="155dp"
                 android:layout_height="120.5dp"
                 android:layout_marginLeft="10dp"

@@ -18,6 +18,7 @@
             android:textSize="17dp"
             android:textColor="@android:color/white"/>
         <ImageButton
+            android:id="@+id/btn_lets_donation_campaign"
             android:layout_width="38.5dp"
             android:layout_height="43dp"
             android:layout_alignParentTop="true"
