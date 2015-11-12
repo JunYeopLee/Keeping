@@ -23,26 +23,26 @@ public class MainActivity extends TabActivity {
         imageView.setImageResource(R.drawable.btn_tab1);
         tabHost.addTab(tabHost.newTabSpec("Tab1")
                 .setIndicator(imageView)
-                .setContent(new Intent(this, HomeActivity.class)));
+                .setContent(new Intent(this, HomeActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)));
 
         imageView = new ImageView(this);
         imageView.setImageResource(R.drawable.btn_tab2);
         tabHost.addTab(tabHost.newTabSpec("Tab2")
                 .setIndicator(imageView)
-                .setContent(new Intent(this, InventoryActivity.class)));
+                .setContent(new Intent(this, InventoryActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)));
 
         imageView = new ImageView(this);
         imageView.setImageResource(R.drawable.btn_tab3);
         tabHost.addTab(tabHost.newTabSpec("Tab3")
                 .setIndicator(imageView)
-                .setContent(new Intent(this, DonationActivity.class)));
+                .setContent(new Intent(this, DonationActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)));
 
 
         imageView = new ImageView(this);
         imageView.setImageResource(R.drawable.btn_tab4);
         tabHost.addTab(tabHost.newTabSpec("Tab4")
                 .setIndicator(imageView)
-                .setContent(new Intent(this, BenefitActivity.class)));
+                .setContent(new Intent(this, BenefitActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)));
 
         tabHost.setBackgroundColor(Color.TRANSPARENT);
         tabHost.setOnFocusChangeListener(new View.OnFocusChangeListener() {
@@ -59,6 +59,8 @@ public class MainActivity extends TabActivity {
         tabWidget.getChildAt(0).setBackground(getResources().getDrawable(R.drawable.home_tab1));
         tabWidget.getChildAt(0).invalidate();
 
+
+/*
         tabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
             @Override
             public void onTabChanged(String tabId) {
@@ -80,6 +82,7 @@ public class MainActivity extends TabActivity {
                 }
             }
         });
+        */
         tabHost.setCurrentTab(0);
+        }
     }
-}

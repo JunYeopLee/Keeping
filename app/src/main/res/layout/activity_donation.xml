@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.administrator.keeping.DonationActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:visibility="visible">
     <TextView
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -21,7 +22,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="9"
+        android:layout_weight="10"
         android:orientation="vertical"
         android:background="@android:color/white">
         <ImageView
@@ -63,6 +64,13 @@
             android:layout_marginLeft="20dp"
             android:scaleType="fitCenter"
             android:src="@drawable/donation_donatinocampaign_text"/>
+
+        <com.example.junyeop_imaciislab.keeping.util.CustomGallery
+            android:id="@+id/gallery_custom"
+            android:layout_width="271.5dp"
+            android:layout_height="246.5dp"
+            android:layout_marginLeft="40dp"
+            android:visibility="visible"/>
 
     </LinearLayout>
 </LinearLayout>

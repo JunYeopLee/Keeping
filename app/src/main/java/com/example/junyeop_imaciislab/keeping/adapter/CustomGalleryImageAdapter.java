@@ -18,9 +18,10 @@ public class CustomGalleryImageAdapter extends BaseAdapter {
     private LayoutInflater mInflater;
     private int count;
 
-    public CustomGalleryImageAdapter(Context c) {
+    public CustomGalleryImageAdapter(Context c,int count) {
         mContext = c;
         mInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        this.count = count;
     }
 
     @Override
@@ -40,11 +41,9 @@ public class CustomGalleryImageAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        View mview = convertView;
-        if (mview == null) {
-            mview = mInflater.inflate(R.layout.gallery_item, null);
+        if (convertView == null) {
+            convertView = mInflater.inflate(R.layout.gallery_item, null);
         }
-        image = (ImageView) mview.findViewById(R.id.image);
-        return mview;
+        return convertView;
     }
 }

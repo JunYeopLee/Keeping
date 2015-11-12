@@ -30,7 +30,11 @@
         <activity android:name=".HomeActivity" />
         <activity android:name=".InventoryActivity" />
         <activity android:name=".DonationActivity" />
-        <activity android:name=".BenefitActivity"></activity>
+        <activity android:name=".BenefitActivity" />
+        <activity android:name=".BenefitDetailActivity" >
+        </activity>
+        <activity android:name=".CertificheckAcitivty" >
+        </activity>
     </application>
 
 </manifest>

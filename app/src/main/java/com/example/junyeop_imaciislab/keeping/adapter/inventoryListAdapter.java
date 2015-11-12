@@ -32,8 +32,9 @@ public class inventoryListAdapter  extends ArrayAdapter<inventoryListDAO> {
     @Override
     public View getView(int position, View view, ViewGroup parent) {
         LayoutInflater inflater = context.getLayoutInflater();
-        view = inflater.inflate(R.layout.listview_item_inventorylist,null);
-
+        if(view==null) {
+            view = inflater.inflate(R.layout.listview_item_inventorylist,null);
+        }
         scale = context.getResources().getDisplayMetrics().density;
         int dp = (int) (scale + 0.5f);
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(320 * dp, 60 * dp);
